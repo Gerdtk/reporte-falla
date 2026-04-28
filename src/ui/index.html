@@ -1,0 +1,59 @@
+<!-- src/ui/index.html -->
+<div class="container">
+  <h1>📋 Reporte de Falla</h1>
+  
+  <form id="reporteForm">
+    <!-- Selectores de catálogo -->
+    <div class="form-group">
+      <label>📍 Línea</label>
+      <select id="lineaSelect" required>
+        <option value="">Seleccionar línea</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>🔢 Modelo</label>
+      <select id="modeloSelect" required>
+        <option value="">Seleccionar modelo</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>🖨️ Máquina</label>
+      <select id="maquinaSelect" required disabled>
+        <option value="">Primero selecciona línea</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>🔧 Herramental</label>
+      <select id="herramentalSelect" disabled>
+        <option value="">No aplica / Seleccionar</option>
+      </select>
+    </div>
+
+    <!-- Campos de texto libre -->
+    <div class="form-group">
+      <label>📝 Descripción de la falla *</label>
+      <textarea id="descripcionFalla" rows="3" required placeholder="Ej: Se presentaron multiples fallas en la ekra..."></textarea>
+    </div>
+
+    <div class="form-group">
+      <label>🔍 Causa raíz</label>
+      <textarea id="causaRaiz" rows="2" placeholder="Opcional: dejar vacío para 'no se encontró causa raíz aparente'"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label>✅ Acción correctiva *</label>
+      <textarea id="accionCorrectiva" rows="2" required placeholder="Ej: Se cambio el stencil 5xx7 y las navajas..."></textarea>
+    </div>
+
+    <button type="submit" id="enviarBtn">📤 Enviar a WhatsApp</button>
+  </form>
+
+  <!-- Preview del mensaje -->
+  <div class="preview">
+    <h3>Vista previa del mensaje:</h3>
+    <div id="preview" class="message-preview"></div>
+  </div>
+</div>
