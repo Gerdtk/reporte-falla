@@ -1,10 +1,10 @@
-// src/ui/renderSelectores.ts
-import { enviarAWhatsApp, reporteToWhatsApp } from '../utils/toWhatsApp';
-import type { Reporte } from '../types/reporte';
-import type { Linea } from '../types/linea';
-import type { Maquina } from '../types/maquina';
-import type { Herramental } from '../types/herramental';
-import type { Modelo } from '../types/modelo';
+// ./renderSelectores.ts
+import { enviarAWhatsApp, reporteToWhatsApp } from '../../utils/toWhatsApp';
+import type { Reporte } from '../../types/reporte';
+import type { Linea } from '../../types/linea';
+import type { Maquina } from '../../types/maquina';
+import type { Herramental } from '../../types/herramental';
+import type { Modelo } from '../../types/modelo';
 
 // DATOS DE EJEMPLO (después los reemplazas con localStorage)
 const lineas: Linea[] = [

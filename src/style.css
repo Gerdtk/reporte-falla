@@ -380,3 +380,50 @@ button:hover {
   overflow-y: auto;
   color: var(--text-h);
 }
+
+.app-header {
+  margin-bottom: 18px;
+  text-align: center;
+}
+
+.app-header h1 {
+  margin-bottom: 6px;
+}
+
+.app-header p {
+  margin: 0;
+  opacity: 0.75;
+  font-size: 0.95rem;
+}
+
+.tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 22px;
+}
+
+.tab {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  padding: 11px 14px;
+  border-radius: 10px;
+  border: 1px solid #333;
+  background: #1b1b24;
+  color: white;
+  cursor: pointer;
+}
+
+.tab img {
+  width: 18px;
+  height: 18px;
+  filter: invert(1);
+}
+
+.tab.active {
+  border-color: #8b5cf6;
+  background: #2b2140;
+}
