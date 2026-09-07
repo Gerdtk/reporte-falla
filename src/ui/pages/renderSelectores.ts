@@ -5,6 +5,8 @@ import type { Linea } from '../../types/linea';
 import type { Maquina } from '../../types/maquina';
 import type { Herramental } from '../../types/herramental';
 import type { Modelo } from '../../types/modelo';
+import {cifrarTelefono} from '../../types/telefono';
+
 
 // DATOS DE EJEMPLO (después los reemplazas con localStorage)
 const lineas: Linea[] = [
@@ -94,6 +96,16 @@ function updateHerramentalesByMaquina(maquinaId: string) {
   });
 }
 
+const CLAVE_CIFRADO = "clave-secreta-para-cifrado";
+
+function obtain_phone(): string {
+  const telefono = 
+  document.getElementById('telefonoInput') as HTMLTextAreaElement | null;
+
+  return telefono?.value.trim() ?? '';
+}
+
+
 function updatePreview() {
   const previewDiv = document.getElementById('preview');
   if (!previewDiv) return;
@@ -107,13 +119,14 @@ function updatePreview() {
     causaRaiz: (document.getElementById('causaRaiz') as HTMLTextAreaElement)?.value || '',
     accionCorrectiva: (document.getElementById('accionCorrectiva') as HTMLTextAreaElement)?.value || '',
     fecha: new Date().toISOString(),
+    telefonoInput: obtain_phone() ? '[El numero se cifrara el enviar]' : null,
     tieneFotos: false,
   };
   
   previewDiv.textContent = reporteToWhatsApp(reporteActual);
 }
 
-function handleSubmit(e: Event) {
+async function handleSubmit(e: Event): Promise<void> {
   e.preventDefault();
   
   const lineaSelect = document.getElementById('lineaSelect') as HTMLSelectElement;
@@ -126,6 +139,20 @@ function handleSubmit(e: Event) {
     alert('Faltan campos obligatorios: Línea, Modelo, Máquina, Descripción y Acción Correctiva');
     return;
   }
+
+  const telefono = obtain_phone();
+  let telefonoCifrado: string | null = null;
+
+  try {
+    if (telefono) {
+      telefonoCifrado = await cifrarTelefono(telefono, CLAVE_CIFRADO);
+    }
+  } catch (error) {
+    console.error('Error al cifrar el telefono:', error);
+    alert('Error al cifrar el telefono.');
+    return;
+  }
+
   
   const reporteEnviar: Reporte = {
     linea: lineas.find(l => l.id === lineaSelect.value) || null,
@@ -137,6 +164,7 @@ function handleSubmit(e: Event) {
     accionCorrectiva: accionCorrectiva,
     fecha: new Date().toISOString(),
     tieneFotos: false,
+    telefonoInput: telefonoCifrado,
   };
   
   enviarAWhatsApp(reporteEnviar);

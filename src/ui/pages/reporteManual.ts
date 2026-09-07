@@ -1,5 +1,25 @@
+//reporteManual.ts
+
 import { setupFormulario} from "./renderSelectores";
 import { Icons} from "../../utils/icons";
+import {cifrarTelefono} from "../../types/telefono";
+
+const CLAVE_CIFRADO = "clave-secreta-para-cifrado";
+
+export async function obtenerTelefonoCifrado(): Promise<string | null>{
+    const telefonoInput = document.querySelector<HTMLTextAreaElement>("#telefonoInput");
+    if (!telefonoInput){
+        console.error("No se encontro el telefono de entrada");
+        return null;
+    }
+    const telefono = telefonoInput.value.trim();
+    if(!telefono){
+        return null;
+    }
+
+    return cifrarTelefono(telefono, CLAVE_CIFRADO);
+}
+
 
 
 
@@ -20,11 +40,16 @@ export function ReporteManual() {
                     </div>
 
                     <div class="form-group">
-                        <label> <img src="/node_modules/lucide-static/icons/screen-share.svg" alt="Modelo"/>
+                        <label>${Icons.Printer({ size: 20, color: "antiquewhite"})}
                         Modelo</label>
                         <select id="modeloSelect" required>
                         <option value="">Seleccionar modelo</option>
                         </select>
+                    </div>
+
+                    <div class="from-group">
+                    <label>${Icons.Dog({size: 20, color:"white"})} numero de Telefono</label>
+                    <textarea id="telefonoInput" placeholder="Ingresa tu numero de telefono para cifrado"></textarea>
                     </div>
 
                     <div class="form-group">

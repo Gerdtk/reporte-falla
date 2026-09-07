@@ -7,6 +7,7 @@ import type {Herramental} from './herramental';
 import type {Modelo} from './modelo';
 
 
+
 export interface Reporte{
 
     linea: Linea | null;
@@ -17,6 +18,8 @@ export interface Reporte{
     descripcionFalla: string;
     causaRaiz: string;
     accionCorrectiva: string;
+
+    telefonoInput: string|null;
 
     fecha: string;
     tieneFotos: boolean;

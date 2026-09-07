@@ -34,6 +34,8 @@ export const reporteToWhatsApp = (reporte: Reporte): string => {
         mensaje += `*Evidencia: *`
     }
 
+    mensaje += `Tu numero de telefono cifrado: ${reporte.telefonoInput}\n\n`;
+
     mensaje += `- © KCC`;
     return mensaje;
 };
